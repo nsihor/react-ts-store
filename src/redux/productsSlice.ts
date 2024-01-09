@@ -2,28 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import {persistReducer} from 'redux-persist';
 import {fetchProducts, fetchProductById, fetchProductByCategory} from './operations';
-
-interface IProduct {
-    id: number,
-    title: string,
-    price: string,
-    category: string,
-    description: string,
-    image: string
-}
-
-interface IFilter {
-    category: string,
-    query: string
-}
-
-interface IProductsState {
-    products: [IProduct] | [];
-    productById: IProduct | {};
-    filter: IFilter;
-    isLoading: boolean;
-    error: string | null;
-}
+import {IFilter, IProductsState} from "./types";
 
 const initialState: IProductsState = {
     products: [],
