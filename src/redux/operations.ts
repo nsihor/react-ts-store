@@ -9,8 +9,11 @@ export const fetchProducts = createAsyncThunk(
         try {
             const { data }: AxiosResponse = await axios.get('/');
             return data;
-        } catch (e: any) {
-            return rejectWithValue(e.message);
+        } catch (e) {
+            if (axios.isAxiosError(e)) {
+                return rejectWithValue(e.message);
+            }
+            throw e;
         }
     }
 );
@@ -21,8 +24,11 @@ export const fetchProductById = createAsyncThunk(
         try {
             const { data }: AxiosResponse = await axios.get(`/${id}`);
             return data;
-        } catch (e: any) {
-            return rejectWithValue(e.message);
+        } catch (e) {
+            if (axios.isAxiosError(e)) {
+                return rejectWithValue(e.message);
+            }
+            throw e;
         }
     }
 );
@@ -33,8 +39,11 @@ export const fetchProductByCategory = createAsyncThunk(
         try {
             const { data }: AxiosResponse = await axios.get(`/category/${category}`);
             return data;
-        } catch (e: any) {
-            return rejectWithValue(e.message);
+        } catch (e) {
+            if (axios.isAxiosError(e)) {
+                return rejectWithValue(e.message);
+            }
+            throw e;
         }
     }
-)
+);
